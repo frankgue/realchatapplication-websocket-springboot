@@ -10,4 +10,7 @@ package com.gkfcsolution.realchatapplicationwebsocketspringboot.service;
  * @time 08:51
  */
 public interface UserService {
+    boolean userExists(String username);
+
+    void setUserOnlineStatus(String username, boolean isOnline);
 }
