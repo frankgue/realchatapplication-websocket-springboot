@@ -7,6 +7,9 @@ import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
+import java.util.List;
+import java.util.Optional;
+
 /**
  * Created on 2025 at 09:55
  * File: null.java
@@ -23,4 +26,9 @@ public interface UserRepository extends JpaRepository<User, Long> {
     @Modifying
     @Query("UPDATE User u SET u.isOnline = :isOnline WHERE u.username = :username")
     void updateUserOnlineStatus(@Param("username") String username, @Param("isOnline") boolean isOnline);
+
+    Optional<User> findByUsername(String username);
+
+    @Query("SELECT u FROM User u WHERE u.isOnline = 'true'")
+    List<User> findByIsOnlineTrue();
 }

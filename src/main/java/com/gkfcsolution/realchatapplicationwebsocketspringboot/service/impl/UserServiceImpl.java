@@ -1,10 +1,13 @@
 package com.gkfcsolution.realchatapplicationwebsocketspringboot.service.impl;
 
+import com.gkfcsolution.realchatapplicationwebsocketspringboot.entity.User;
 import com.gkfcsolution.realchatapplicationwebsocketspringboot.repository.UserRepository;
 import com.gkfcsolution.realchatapplicationwebsocketspringboot.service.UserService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
+
+import java.util.Optional;
 
 /**
  * Created on 2025 at 08:51
@@ -28,5 +31,10 @@ public class UserServiceImpl implements UserService {
     @Override
     public void setUserOnlineStatus(String username, boolean isOnline) {
         userRepository.updateUserOnlineStatus(username, isOnline);
+    }
+
+    @Override
+    public Optional<User> findByUsername(String username) {
+        return userRepository.findByUsername(username);
     }
 }
